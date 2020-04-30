@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <dos.h>
 #include <string.h>
 #include <stdio.h>
 #include "asm.h"
@@ -9,7 +8,7 @@
 #define MAX_CREF_N 8000
 
 typedef struct {
-	char         far *word;
+	char         *word;
 	unsigned     val;
 	unsigned     stus;
 }LABEL;
@@ -33,7 +32,7 @@ typedef struct {
 }CREF;
 
 
-static char far *LabelBuff;		/* ラベル文字列格納部   		*/
+static char *LabelBuff;		/* ラベル文字列格納部   		*/
 static unsigned Labelstroff;	/* ラベル文字列格納オフセット	*/
 static LABEL  *Label;			/* ラベル格納部 		*/
 static LABEL **Lp;				/* ラベルポインタ配列 	*/
@@ -42,7 +41,7 @@ static int     Ln;				/* ラベル数 			*/
 static char   *Defstr;			/* 定義文字列格納部				*/
 static unsigned Defstroff;		/* 定義文字列格納オフセット		*/
 static DEFINE *Define;			/* 定義構造体配列格納部			*/
-static int     Def;				/* 定義数						*/
+static unsigned Def;				/* 定義数						*/
 static unsigned Defnum[16];		/* 定義番号－配列中オフセット対照表 */
 
 extern char	cref_file[];		/* クロスリファレンスファイル名 */
@@ -51,11 +50,11 @@ extern char	OpenCRFerrMsg[];
 extern char	MallocerrMsg[];
 extern char	Crefoverflow[];
 
-static CREF far *CrefBuff;		/* クロスリファレンス情報格納部	*/
-static CREF far *CrefPtr;
+static CREF *CrefBuff;		/* クロスリファレンス情報格納部	*/
+static CREF *CrefPtr;
 static int  Cref_enable;
 
-static Cref_n;	/* バッファへの登録数 */
+static int  Cref_n;	/* バッファへの登録数 */
 
 
 
@@ -72,7 +71,7 @@ void reset_LabelSearchedFlag(void)
 
 int get_LabelSearchedFlag(unsigned *buff)
 {
-	int n;
+	unsigned int n;
 	for(n=0;n<LabelSearchedFlag;n++){
 		*buff++=LabelSearchedStus[n];
 	}
@@ -95,7 +94,7 @@ int  init_label(void)			/* ラベル領域の確保 	*/
 	Defnum[0]  =0;
 	for(i=1;i<16;i++) Defnum[i]=MAXDEF;
 	
-	if((LabelBuff=farmalloc(MAXLABELSTR))==NULL) return 0;
+	if((LabelBuff=malloc(MAXLABELSTR))==NULL) return 0;
 	Labelstroff  =0;
 	
 	if((Label	 =malloc(sizeof(LABEL)*MAXLABEL))==NULL) return 0;
@@ -115,7 +114,7 @@ int print_label(int adr_only,FILE *d)
 {
 	int i,j,k;
 	char lstr[32];
-	char far *fptr;
+	char *fptr;
 	k=0;
 	for(i=0;i<Ln;i++){
 		if((adr_only)&&(Lp[i]->stus & DATA_VALUE)) continue;
@@ -148,7 +147,7 @@ int print_label(int adr_only,FILE *d)
 	static int cmplabel(char *a,LABEL **p)
 	{
 		int i,n;
-		char far *fptr;
+		char *fptr;
 		
 		n=0;
 		fptr=(*p)->word;
@@ -167,7 +166,7 @@ int add_label(char *str,unsigned val,int stus)
 {
 	int j,n;
 	LABEL **ptr;
-	char far *fptr;
+	char *fptr;
 	
 	
 	n=strlen(str);
@@ -201,7 +200,7 @@ int add_label(char *str,unsigned val,int stus)
 
 int entry_define(int defn,char *str)
 {
-	static pdefn=0;
+	static int pdefn=0;
 	char word[64];
 	int  n;
 	char *cptr;
@@ -261,7 +260,7 @@ int get_defn(char *str)
 
 int define_replace(int defn,char *a,char *b)	/* a->b */
 {
-	int i;
+	unsigned int i;
 	i=Defnum[defn];
 	while((i<Defnum[defn+1])&&(i<Def)){
 		if(!strcmp(a,Define[i].a)){
@@ -304,7 +303,7 @@ int get_label_val_bs(char *str,unsigned int *v)
 	static int cmplabel2(LABEL **a,LABEL **b)
 	{
 		int i;
-		char far *fptr_a,far *fptr_b;
+		char *fptr_a, *fptr_b;
 		
 		fptr_a=(*a)->word;
 		fptr_b=(*b)->word;
@@ -329,14 +328,15 @@ void sort_label(void)
 /**************************/
 int init_cref(void)
 {
-	/* CREF ﾊﾞｯﾌｧ 確保 */
-	if((CrefBuff=farmalloc(sizeof(CREF)*MAX_CREF_N))==NULL){
+	/* CREF バッファ 確保 */
+	if((CrefBuff=malloc(sizeof(CREF)*MAX_CREF_N))==NULL){
 		err(MallocerrMsg);
 		return 0;
 	}
 	CrefPtr=CrefBuff;
 	Cref_n=0;
 	Cref_enable=1;
+	return 1;
 }
 
 int regist_cref_infomation(int line,int iline,unsigned n,unsigned *stus)
@@ -371,8 +371,8 @@ int output_cref(void)
 	unsigned stus,stus2;
 	int crlfflag=0;
 	
-	CREF far *fcrefptr;
-	char far *fcharptr;
+	CREF *fcrefptr;
+	char *fcharptr;
 
 	if((Cref_f=fopen(cref_file,"wt")) == NULL){
 		err(OpenCRFerrMsg);
@@ -427,4 +427,3 @@ int output_cref(void)
 	return 1;
 }
 
-

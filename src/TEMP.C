@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <dos.h>
 #include "asm.h"
 #include "words.h"
 #include "label.h"
@@ -14,7 +13,7 @@ extern char	MallocerrMsg[];
 extern char	Tempoverflow[];
 
 static FILE *Tmp;
-static char far *TmpBuff;
+static char *TmpBuff;
 static unsigned TmpBuffPtr;
 static int  Eof;
 
@@ -22,13 +21,13 @@ static int  Eof;
 int init_temp_for_write(void)
 {
 	if(TemporaryFile){
-		if((Tmp=fopen(tmp_file,"wt")) == NULL){	/* ﾃﾝﾎﾟﾗﾘ ﾌｧｲﾙ ｵ-ﾌﾟﾝ */
+		if((Tmp=fopen(tmp_file,"wt")) == NULL){	/* テンポラリ ファイル オ-プン */
 			err(OpenTMPerrMsg);
 			return 0;
 		}
 		return 1;
 	}else{
-		if((TmpBuff=farmalloc(64000))==NULL){		/* ﾃﾝﾎﾟﾗﾘ ﾊﾞｯﾌｧ 確保 */
+		if((TmpBuff=malloc(64000))==NULL){		/* テンポラリ バッファ 確保 */
 			err(MallocerrMsg);
 			return 0;
 		}
@@ -37,9 +36,9 @@ int init_temp_for_write(void)
 	}
 }
 
-int tmp_puts(char *str)
+static int tmp_puts(char *str)
 {
-	char far *fptr;
+	char *fptr;
 	
 	if(TemporaryFile){
 		return fputs(str,Tmp);
@@ -54,7 +53,7 @@ int tmp_puts(char *str)
 	}
 }
 
-int write_tmp_info(int linenum,char *str)
+void write_tmp_info(int linenum,char *str)
 {
 	char str1[16],str2[16];
 	if(TemporaryFile){
@@ -81,7 +80,7 @@ void close_tmp_for_write(void)
 int init_temp_for_read(void)
 {
 	if(TemporaryFile){
-		if((Tmp=fopen(tmp_file,"rt")) == NULL){	/* ﾃﾝﾎﾟﾗﾘ ﾌｧｲﾙ ｵ-ﾌﾟﾝ */
+		if((Tmp=fopen(tmp_file,"rt")) == NULL){	/* テンポラリ ファイル オ-プン */
 			err(OpenTMPerrMsg);
 			return 0;
 		}
@@ -98,7 +97,7 @@ int init_temp_for_read(void)
 char *tmp_gets(char *str)
 {
 	char *s;
-	char far *fptr;
+	char *fptr;
 	int  i;
 	s=str;
 	
@@ -106,7 +105,7 @@ char *tmp_gets(char *str)
 	if(TemporaryFile){
 		return fgets(str,256,Tmp);	/* １行が２５６文字を越えることはない */
 	}else{
-		if(Eof) return NULL;			/* ｵﾝﾒﾓﾘでは、ｼﾝﾎﾞﾙ情報は書き込まれて*/
+		if(Eof) return NULL;			/* オンメモリでは、シンボル情報は書き込まれて*/
 		for(i=0;i<6;i++) *str++=' ';	/* いない */
 		fptr=TmpBuff+TmpBuffPtr;
 		while((*fptr!='\n')&&(*fptr!=EOF)){
@@ -128,4 +127,3 @@ void close_tmp_for_read(void)
 {
 	if(TemporaryFile) fclose(Tmp);
 }
-

@@ -31,4 +31,3 @@ int regist_cref_infomation(int line,int iline,unsigned n,unsigned *stus);
 int output_cref(void);
 
 
-

@@ -246,4 +246,3 @@ long evaluation(char *str,unsigned pc,int pass,int *symbolerr)
 	if(str2rpn(str,pc,pass,symbolerr)) return 0;
 	return eval_rpn();
 }
-

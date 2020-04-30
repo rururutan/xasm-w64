@@ -13,4 +13,3 @@
 
 void err(char *mess);
 void p1_err(int ln,int iln,int n);
-

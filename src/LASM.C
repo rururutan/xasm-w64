@@ -103,7 +103,7 @@ int entry_table(char *str)
 	}
 #endif
 
-int pseudo_inst(char *word)
+static int pseudo_inst(char *word)
 /*--------------------------------------
  ‚Ç‚Ì‹[—–½—ß‚©‚ğ‚©‚¦‚·
  -1    FŠY“–‚È‚µ
@@ -250,4 +250,3 @@ int get_fmt(int table_num,char *fmt)
 	return  LaTbl[table_num].size;
 }
 
-

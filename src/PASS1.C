@@ -20,7 +20,7 @@ extern char		OpenSRCerrMsg[];
 extern int		CrefFile;
 
 
-void p1_ds(unsigned pc,char *op,char *dest,unsigned  *size)
+static void p1_ds(unsigned pc,char *op,char *dest,unsigned  *size)
 {
 	unsigned s=1;
 	if(!wordtoi(op,size,0)) *size=s=0;
@@ -31,7 +31,7 @@ void p1_ds(unsigned pc,char *op,char *dest,unsigned  *size)
 /* １行あたりの定義可能サイズはテンポラリファイルのラインバッファ
 　のサイズの制限（１２８バイト）を受ける
 */
-int p1_db(unsigned pc,int opn,char **op,char *dest,unsigned *size)
+static int p1_db(unsigned pc,int opn,char **op,char *dest,unsigned *size)
 {
 	char dstr[128];
 	unsigned i,j,k=0,m=0;
@@ -75,7 +75,7 @@ int p1_db(unsigned pc,int opn,char **op,char *dest,unsigned *size)
 	return 1;
 }
 
-int p1_dw(unsigned pc,int opn,char **op,char *dest,unsigned *size)
+static int p1_dw(unsigned pc,int opn,char **op,char *dest,unsigned *size)
 {
 	char dstr[128];
 	unsigned i,j,k=0;
@@ -96,7 +96,7 @@ int p1_dw(unsigned pc,int opn,char **op,char *dest,unsigned *size)
 	return 1;
 }
 
-void p1_cpu(unsigned pc,int i,char **match,char *dest,unsigned *size)
+static void p1_cpu(unsigned pc,int i,char **match,char *dest,unsigned *size)
 {
 	char buff[64];
 	char *str;
@@ -225,7 +225,7 @@ int pass1(void)
 						 	}
 						 }
 						 break;
-				case -5 :if((n&8==0)||(opn!=1)){			/* EQU */
+				case -5 :if(((n&8)==0)||(opn!=1)){			/* EQU */
 							p1_err(linenum,ilinenum,1);
 							erf=1;
 						 }else{
@@ -340,4 +340,3 @@ int pass1(void)
 	close_src();
 	return erf;
 }
-

@@ -1,1 +1,1 @@
-int pass2(void);
+int pass2(void);

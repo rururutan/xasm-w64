@@ -33,7 +33,7 @@ void  detab(char *ptr)		/* ＴＡＢ-スペ－ス変換 */
 }
 
 
-/* 半角ｽﾍﾟｰｽとｶﾝﾏをﾃﾞﾘﾐﾀとした語取り出し */
+/* 半角スペースとカンマをデリミタとした語取り出し */
 char* get_word1(char *src,char *word,int *labelflag)
 {
 	while((*src==' ')||(*src==',')) src++;
@@ -50,8 +50,8 @@ char* get_word1(char *src,char *word,int *labelflag)
 	return src;
 }
 
-/* 指定文字をﾃﾞﾘﾐﾀとした語取り出し */
-/* 文字定数を除き、半角ｽﾍﾟｰｽを削除 */
+/* 指定文字をデリミタとした語取り出し */
+/* 文字定数を除き、半角スペースを削除 */
 char* get_word2(char *str,char *word,char dlm)
 {
 	*word=0;
@@ -81,7 +81,7 @@ char* get_word2(char *str,char *word,char dlm)
 
 int get_word(char *src,char *label,char *mnem,int *opn,char *op[],char *opbuff)
 /*---------------------------------------------------------------
-　ｱｾﾝﾌﾞﾘ言語のための行解析
+　アセンブリ言語のための行解析
   行をラベル、ニモニック、オペランドにわける
   返値　bit3 bit2 bit1 bit0
          |    |            
@@ -144,4 +144,3 @@ void setright(int n,char *str,char *word)
 	while(*word) *str++=*word++;
 	*str=0;
 }
-

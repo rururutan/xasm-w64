@@ -7,6 +7,7 @@
 #include "valstr.h"
 #include "pass1.h"
 #include "pass2.h"
+#include <windows.h>
 
 extern char CopyrightMsg[];
 extern char UsageMsg[];
@@ -18,12 +19,12 @@ extern char TablereaderrMsg[];
 extern char	*P1ErrorMsg[];
 
 
-char    srcfile[64];
-char    hexfile[64];
-char    lstfile[64];
-char	symfile[64];
-char	tmp_file[64];
-char	cref_file[64];
+char    srcfile[FILENAME_MAX];
+char    hexfile[FILENAME_MAX];
+char    lstfile[FILENAME_MAX];
+char	symfile[FILENAME_MAX];
+char	tmp_file[FILENAME_MAX];
+char	cref_file[FILENAME_MAX];
 
 int 	WordRev=0;
 char	Str[128];				
@@ -38,14 +39,15 @@ int		CrefFile=0;
 int		BinFile =0;
 long BinFileStart=0;
 
-void getprimaryname(char *dest,char *src)
+static void getprimaryname(char *dest,char *src)
 {
 	while(*src!=0){
 		if(*src=='.'){
 			switch( *(src+1)){
-				case '.' :*dest++ = *src++;		/* 親ﾃﾞｨﾚｸﾄﾘを表す */
+				case '.' :*dest++ = *src++;		/* 親ディレクトリを表す */
 				          break;
-				case '\\':break;				/* 現ﾃﾞｨﾚｸﾄﾘを表す */
+				case '\\':break;				/* 現ディレクトリを表す */
+				case '/':break;					/* 現ディレクトリを表す */
 				default  :*dest=0; return;
 							/* どうやら拡張子との区切りだったようだ */
 			}
@@ -57,9 +59,9 @@ void getprimaryname(char *dest,char *src)
 
 
 
-void setpathname(char *filename)
+static void setpathname(char *filename)
 {
-	char pname[32];
+	char pname[FILENAME_MAX];
 	getprimaryname(pname,filename);
 	
 	strcpy(srcfile,filename);
@@ -111,13 +113,28 @@ void p1_err(int ln,int iln,int n)
 	putchar('\n');
 }
 
-int read_table_file(void)
+static int read_table_file(void)
 {
 	FILE *fp;
 	char str[256];
 	int  def = 0;
 	
-	if((fp=fopen(TableFileName,"rt")) == NULL) return -1;
+	if((fp=fopen(TableFileName,"rt")) == NULL) {
+#if 1
+		// 開けない場合はexeのパスを検索
+		char exepath[_MAX_PATH];
+		char drive[_MAX_DRIVE], dir[_MAX_DIR], fname[_MAX_FNAME], ext[_MAX_EXT];
+		GetModuleFileName(NULL, exepath, sizeof(exepath));
+		_splitpath(exepath, drive, dir, fname, ext );
+		_makepath(exepath, drive, dir, TableFileName, "");
+		if ((fp = fopen(exepath, "rt")) == NULL) {
+			return -1;
+		}
+#else
+		return -1;
+#endif
+	}
+
 	while(fgets(str,255,fp)!=NULL){
 		if(*str==';') continue;
 		if(*str=='@'){
@@ -144,14 +161,14 @@ quit:
 	return 0;
 }
 
-void setoption(int argc,char **argv)
+static void setoption(int argc,char **argv)
 {
 	int n=1;
 	unsigned nTmp;
 	
 	argc--;
 	if(argc==0) err(UsageMsg);
-	while(argv[n][0]=='/'){
+	while(argv[n][0]=='/' || argv[n][0]=='-'){
 		if(n==argc) err(UsageMsg);
 		if(argv[n][2]==0){
 			switch(argv[n][1]){
@@ -204,4 +221,3 @@ void main(int argc,char **argv)
 	
 	if(CrefFile) output_cref();
 }
-

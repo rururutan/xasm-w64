@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <dos.h>
 #include <stdlib.h>
 #include <string.h>
 #include "asm.h"
@@ -39,22 +38,20 @@ extern long     BinFileStart;
 
 FILE *Src,*Tmp,*Lst,*Hex,*Sym;
 
-unsigned char far *Hexbuff;
+unsigned char *Hexbuff;
 long Hexmin=0xffff,Hexmax=0;
 
 
-int init_hexout(void)
+static int init_hexout(void)
 {
 	long i;
-	unsigned char far *tptr;
+	unsigned char *tptr;
 /*	unsigned ui;	*/
 	
-	if((tptr=farmalloc(0x10010))==NULL) return 0;
+	if((tptr=malloc(0x10010))==NULL) return 0;
 /*	printf("HEX buffer %04x %04x\n",FP_SEG(tptr),FP_OFF(tptr)); */
-	
-	while(FP_OFF(tptr)&0xf) tptr++;
-	Hexbuff = MK_FP(FP_SEG(tptr)+(FP_OFF(tptr)>>4),0);
-	
+
+	Hexbuff = tptr;
 
 	tptr=Hexbuff;
 /*	printf("HEX buffer %04x %04x\n",FP_SEG(tptr),FP_OFF(tptr)); */
@@ -62,9 +59,9 @@ int init_hexout(void)
 	return 1;
 }
 
-void hexout(unsigned long adr,int n,unsigned char *binbuff)
+static void hexout(unsigned long adr,int n,unsigned char *binbuff)
 {
-	unsigned char far *fptr;
+	unsigned char *fptr;
 	if(Hexmin>adr) Hexmin=adr;
 	if(Hexmax<(adr+n-1)) Hexmax=adr+n-1;
 	if(Hexmax>0xffff) Hexmax=0xffff;
@@ -119,9 +116,9 @@ void hexout(unsigned long adr,int n,unsigned char *binbuff)
 		return 1;
 	}
 
-int hexflush(void)
+static int hexflush(void)
 {
-	unsigned char far *fptr;
+	unsigned char *fptr;
 	unsigned char *nptr;
 	unsigned char binbuff[40];
 	int i,n;
@@ -138,9 +135,9 @@ int hexflush(void)
 	return 1;
 }
 
-int binflush(void)
+static int binflush(void)
 {
-	unsigned char far *fptr;
+	unsigned char *fptr;
 	unsigned char *nptr;
 	unsigned char binbuff[40];
 	int i,n;
@@ -161,7 +158,7 @@ int binflush(void)
 
 
 
-int lstout(unsigned adr,int n,unsigned char *binbuff,char *lstbuff)
+static int lstout(unsigned adr,int n,unsigned char *binbuff,char *lstbuff)
 {
 	int column=0;
 	char buff[40];
@@ -266,7 +263,7 @@ static int str2bin(char *src,unsigned *adr,int *n,unsigned char *destbin)
 void pass2(void)
 {
 	int codeflag=1,endflag=0,lstflag;
-	unsigned adr;
+	unsigned adr=0;
 	int n,ln,sln,isln=0;
 	static unsigned char binbuff[128];
 
@@ -283,11 +280,11 @@ void pass2(void)
 	
 	init_temp_for_read();
 	
-	if((Src=fopen(srcfile,"rt")) == NULL){			/* ｿ-ｽ ﾌｧｲﾙ ｵ-ﾌﾟﾝ */
+	if((Src=fopen(srcfile,"rt")) == NULL){			/* ソース ファイル オープン */
 		err(OpenSRCerrMsg);
 	}
 
-	if((Lst=fopen(lstfile,"wt")) == NULL){			/* ﾘｽﾄ ﾌｧｲﾙ ｵ-ﾌﾟﾝ */
+	if((Lst=fopen(lstfile,"wt")) == NULL){			/* リスト ファイル オープン */
 		err(OpenLSTerrMsg);
 	}
 
@@ -376,4 +373,3 @@ void pass2(void)
 	}
 }
 
-

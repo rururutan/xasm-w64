@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <dos.h>
 
-extern char    	srcfile[64];
+extern char    	srcfile[FILENAME_MAX];
 
 static char     inc_src[64];
 

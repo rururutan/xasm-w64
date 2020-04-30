@@ -8,4 +8,3 @@ int lasm(char *mnem,int opn,char *op[],char *match[]);
 int get_fmt(int table_num,char *fmt);
 
 
-
