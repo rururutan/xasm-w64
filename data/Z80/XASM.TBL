@@ -1,0 +1,241 @@
+@\0
+b,	0
+c,	1
+d,	2
+e,	3
+h,	4
+l,	5
+a,	7
+@\1
+bc,	0
+de,	1
+hl,	2
+sp,	3
+@\2
+bc,	0
+de,	1
+hl,	2
+af,	3
+@\3
+bc,	0
+de,	1
+ix,	2
+sp,	3
+@\4
+bc,	0
+de,	1
+iy,	2
+sp,	3
+@\5
+nz,	0
+z,	1
+nc,	2
+c,	3
+po,	4
+pe,	5
+p,	6
+m,	7
+@TABLE
+adc	2	a	(hl)	1	8e
+adc	2	a	(ix~	3	dd 8e S~2
+adc	2	a	(iy~	3	fd 8e S~2
+adc	2	a	\0	1	S88h+~2
+adc	2	a	~	2	ce S~2
+adc	2	hl	\1	2	ed S4ah+(~2<<4)
+add	2	a	(hl)	1	86
+add	2	a	(ix~	3	dd 86 S~2
+add	2	a	(iy~	3	fd 86 S~2
+add	2	a	\0	1	S80h+~2
+add	2	a	~	2	c6 S~2
+add	2	hl	\1	1	S09h+(~2<<4)
+add	2	ix	\3	2	dd S09h+(~2<<4)
+add	2	iy	\4	2	fd S09h+(~2<<4)
+and	1	(hl)		1	a6
+and	1	(ix~		3	dd a6 S~1
+and	1	(iy~		3	fd a6 S~1
+and	1	\0		1	S0a0h+~1
+and	1	~		2	e6 S~1
+bit	2	~	\0	2	cb S40h+(((~1)&7)<<3)+~2
+bit	2	~	(hl)	2	cb S46h+(((~1)&7)<<3)
+bit	2	~	(ix~	4	dd cb S~2 S46h+(((~1)&7)<<3)
+bit	2	~	(iy~	4	fd cb S~2 S46h+(((~1)&7)<<3)
+call	2	\5	~	3	S0c4h+(~1<<3) W~2
+call	1	~		3	cd W~1
+ccf	0			1	3f
+cp	1	(hl)		1	be
+cp	1	(ix~		3	dd be S~1
+cp	1	(iy~		3	fd be S~1
+cp	1	\0		1	S0b8h+~1
+cp	1	~		2	fe S~1
+cpd	0			2	ed a9
+cpdr	0			2	ed b9
+cpi	0			2	ed a1
+cpir	0			2	ed b1
+cpl	0			1	2f
+daa	0			1	27
+dec	1	(hl)		1	35
+dec	1	(ix~		3	dd 35 S~1
+dec	1	(iy~		3	fd 35 S~1
+dec	1	\0		1	S05h+(~1<<3)
+dec	1	\1		1	S0bh+(~1<<4)
+dec	1	ix		2	dd 2b
+dec	1	iy		2	fd 2b
+di	0			1	f3
+djnz	1	~		2	10 S(~1)-$-2 T((~1)-$+126)&0ff00h
+ei	0			1	fb
+ex	2	de	hl	1	eb
+ex	2	af	af'	1	08
+ex	2	(sp)	hl	1	e3
+ex	2	(sp)	ix	2	dd e3
+ex	2	(sp)	iy	2	fd e3
+exx	0			1	d9
+halt	0			1	76
+im	1	0		2	ed 46
+im	1	1		2	ed 56
+im	1	2		2	ed 5e
+in	2	\0	(c)	2	ed S40h+(~1<<3)
+in	2	a	(~	2	db S~2
+inc	1	(hl)		1	34
+inc	1	(ix~		3	dd 34 S~1
+inc	1	(iy~		3	fd 34 S~1
+inc	1	\0		1	S04h+(~1<<3)
+inc	1	\1		1	S03h+(~1<<4)
+inc	1	ix		2	dd 23
+inc	1	iy		2	fd 23
+ind	0			2	ed aa
+indr	0			2	ed ba
+ini	0			2	ed a2
+inir	0			2	ed b2
+jp	2	\5	~	3	S0c2h+(~1<<3) W~2
+jp	1	(hl)	 	1	0e9h
+jp	1	(ix)	 	2	dd e9
+jp	1	(iy)	 	2	fd e9
+jp	1	~		3	c3 W~1
+jr	2	c	~	2	38 S(~2)-$-2 T((~2)-$+126)&0ff00h
+jr	2	nc	~	2	30 S(~2)-$-2 T((~2)-$+126)&0ff00h
+jr	2	z	~	2	28 S(~2)-$-2 T((~2)-$+126)&0ff00h
+jr	2	nz	~	2	20 S(~2)-$-2 T((~2)-$+126)&0ff00h
+jr	1	~		2	18 S(~1)-$-2 T((~1)-$+126)&0ff00h
+ld	2	a	i	2	ed 57
+ld	2	a	r	2	ed 5f
+ld	2	i	a	2	ed 47
+ld	2	r	a	2	ed 4f
+ld	2	a	(bc)	1	0a
+ld	2	a	(de)	1	1a
+ld	2	(bc)	a	1	02
+ld	2	(de)	a	1	12
+ld	2	\0	\0	1	S40h+(~1<<3)+~2
+ld	2	\0	(hl)	1	S46h+(~1<<3)
+ld	2	\0	(ix~	3	dd S46h+(~1<<3) S~2
+ld	2	\0	(iy~	3	fd S46h+(~1<<3) S~2
+ld	2	a	(~	3	3a W~2
+ld	2	\0	~	2	S06h+(~1<<3) S~2
+ld	2	(hl)	\0	1	S70h+~2
+ld	2	(hl)	~	2	36 S~2
+ld	2	(ix~	\0	3	dd S70h+~2 S~1
+ld	2	(ix~	~	4	dd 36 S~1 S~2
+ld	2	(iy~	\0	3	fd S70h+~2 S~1
+ld	2	(iy~	~	4	fd 36 S~1 S~2
+ld	2	sp	hl	1	f9
+ld	2	sp	ix	2	dd f9
+ld	2	sp	iy	2	fd f9
+ld	2	hl	(~	3	2a W~2
+ld	2	\1	(~	4	ed S4bh+(~1<<4) W~2
+ld	2	\1	~	3	S01h+(~1<<4) W~2
+ld	2	ix	(~	4	dd 2a W~2
+ld	2	iy	(~	4	fd 2a W~2
+ld	2	ix	~	4	dd 21 W~2
+ld	2	iy	~	4	fd 21 W~2
+ld	2	(~	a	3	32 W~1
+ld	2	(~	hl	3	22 W~1
+ld	2	(~	ix	4	dd 22 W~1
+ld	2	(~	iy	4	fd 22 W~1
+ld	2	(~	\1	4	ed S43h+(~2<<4) W~1
+ldd	0			2	ed a8
+lddr	0			2	ed b8
+ldi	0			2	ed a0
+ldir	0			2	ed b0
+neg	0			2	ed 44
+nop	0			1	00
+or	1	(hl)		1	b6
+or	1	(ix~		3	dd b6 S~1
+or	1	(iy~		3	fd b6 S~1
+or	1	\0		1	S0b0h+~1
+or	1	~		2	f6 S~1
+otdr	0			2	ed bb
+otir	0			2	ed b3
+out	2	(c)	\0	2	ed S41h+(~2<<3)
+out	2	(~	a	2	d3 S~1
+outd	0			2	ed ab
+outi	0			2	ed a3
+pop	1	\2		1	S0c1h+((~1)<<4)
+pop	1	ix		2	dd e1
+pop	1	iy		2	fd e1
+push	1	\2		1	S0c5h+((~1)<<4)
+push	1	ix		2	dd e5
+push	1	iy		2	fd e5
+res	2	~	\0	2	cb S80h+(((~1)&7)<<3)+~2
+res	2	~	(hl)	2	cb S86h+(((~1)&7)<<3)
+res	2	~	(ix~	4	dd cb S~2 S86h+(((~1)&7)<<3)
+res	2	~	(iy~	4	fd cb S~2 S86h+(((~1)&7)<<3)
+ret	0			1	c9
+ret	1	\5		1	S0c0h+(~1<<3)
+reti	0			2	ed 4d
+retn	0			2	ed 45
+rl	1	\0		2	cb S10h+~1
+rl	1	(hl)		2	cb 16
+rl	1	(ix~		4	dd cb S~1 16
+rl	1	(iy~		4	fd cb S~1 16
+rla	0			1	17
+rlc	1	\0		2	cb S00h+~1
+rlc	1	(hl)		2	cb 06
+rlc	1	(ix~		4	dd cb S~1 06
+rlc	1	(iy~		4	fd cb S~1 06
+rlca	0			1	07
+rld	0			2	ed 6f
+rr	1	\0		2	cb S18h+~1
+rr	1	(hl)		2	cb 1e
+rr	1	(ix~		4	dd cb S~1 1e
+rr	1	(iy~		4	fd cb S~1 1e
+rra	0			1	1f
+rrc	1	\0		2	cb S08h+~1
+rrc	1	(hl)		2	cb 0e
+rrc	1	(ix~		4	dd cb S~1 0e
+rrc	1	(iy~		4	fd cb S~1 0e
+rrca	0			1	0f
+rrd	0			2	ed 67
+rst	1	~		1	S0c7h+((~1)&38h)
+sbc	2	a	(hl)	1	9e
+sbc	2	a	(ix~	3	dd 9e S~2
+sbc	2	a	(iy~	3	fd 9e S~2
+sbc	2	a	\0	1	S98h+~2
+sbc	2	a	~	2	de S~2
+sbc	2	hl	\1	2	ed S42h+(~2<<4)
+scf	0			1	37
+set	2	~	\0	2	cb S0c0h+(((~1)&7)<<3)+~2
+set	2	~	(hl)	2	cb S0c6h+(((~1)&7)<<3)
+set	2	~	(ix~	4	dd cb S~2 S0c6h+(((~1)&7)<<3)
+set	2	~	(iy~	4	fd cb S~2 S0c6h+(((~1)&7)<<3)
+sla	1	\0		2	cb S20h+~1
+sla	1	(hl)		2	cb 26
+sla	1	(ix~		4	dd cb S~1 26
+sla	1	(iy~		4	fd cb S~1 26
+sra	1	\0		2	cb S28h+~1
+sra	1	(hl)		2	cb 2e
+sra	1	(ix~		4	dd cb S~1 2e
+sra	1	(iy~		4	fd cb S~1 2e
+srl	1	\0		2	cb S38h+~1
+srl	1	(hl)		2	cb 3e
+srl	1	(ix~		4	dd cb S~1 3e
+srl	1	(iy~		4	fd cb S~1 3e
+sub	1	(hl)		1	96
+sub	1	(ix~		3	dd 96 S~1
+sub	1	(iy~		3	fd 96 S~1
+sub	1	\0		1	S90h+~1
+sub	1	~		2	d6 S~1
+xor	1	(hl)		1	ae
+xor	1	(ix~		3	dd ae S~1
+xor	1	(iy~		3	fd ae S~1
+xor	1	\0		1	S0a8h+~1
+xor	1	~		2	ee S~1
+@END

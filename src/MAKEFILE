@@ -1,0 +1,45 @@
+#	makefile for X ASSEMBLER
+xasm175.exe :  obj\asm.obj     obj\message.obj \
+		     obj\pass1.obj   obj\words.obj   \
+		     obj\label.obj   obj\valstr.obj  \
+		     obj\lasm.obj    obj\pass2.obj   \
+		     obj\eval.obj    obj\temp.obj    \
+		     obj\src.obj
+	lcc -o xasm175.exe @l85
+
+obj\asm.obj :	     asm.c asm.h pass1.h label.h lasm.h valstr.h
+	lcc -c  -o obj\asm.obj asm.c
+	
+obj\message.obj:     message.c
+	lcc -c  -o obj\message.obj message.c
+
+obj\pass1.obj :	pass1.c asm.h words.h lasm.h label.h valstr.h eval.h temp.h \
+                src.h
+	lcc -c  -o obj\pass1.obj pass1.c
+
+obj\pass2.obj :	pass2.c asm.h words.h lasm.h label.h valstr.h eval.h temp.h
+	lcc -c  -o obj\pass2.obj pass2.c
+
+obj\words.obj :	words.c	asm.h 
+	lcc -c  -o obj\words.obj words.c
+
+obj\label.obj :	label.c	asm.h words.h valstr.h
+	lcc -c  -o obj\label.obj label.c
+
+obj\valstr.obj : valstr.c asm.h words.h 
+	lcc -c  -o obj\valstr.obj valstr.c
+
+obj\lasm.obj : lasm.c asm.h valstr.h words.h label.h
+	lcc -c  -o obj\lasm.obj lasm.c
+
+obj\eval.obj : eval.c valstr.h
+	lcc -c  -o obj\eval.obj eval.c
+
+obj\temp.obj : temp.c asm.h label.h words.h
+	lcc -c  -o obj\temp.obj temp.c
+
+obj\src.obj : src.c 
+	lcc -c  -o obj\src.obj src.c
+
+
+

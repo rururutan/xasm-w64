@@ -1,0 +1,114 @@
+@\0
+b,	0
+c,	1
+d,	2
+e,	3
+h,	4
+l,	5
+m,	6
+a,	7
+@\1
+hl,	4
+bc,	0
+@TABLE
+aci	1	~		2	ce S~1
+adc	1	\0		1	S88h+(~1)
+add	1	\0		1	S80h+(~1)
+adi	1	~		2	c6 S~1
+ana	1	\0		1	S0a0h+(~1)
+ani	1	~		2	e6 S~1
+call	1	~		3	cd W~1
+cc	1	~		3	dc W~1
+cm	1	~		3	fc W~1
+cma	0			1	2f
+cmc	0			1	3f
+cmp	1	\0		1	S0b8h+~1
+cnc	1	~		3	d4 W~1
+cnz	1	~		3	c4 W~1
+cp	1	~		3	f4 W~1
+cpe	1	~		3	ec W~1
+cpi	1	~		2	fe S(~1)
+cpo	1	~		3	e4 W~1
+cz	1	~		3	cc W~1
+daa	0			1	27
+dad	1	b		1	09
+dad	1	d		1	19
+dad	1	h		1	29
+dad	1	sp		1	39
+dcr	1	\0		1	S((~1)<<3)+5
+dcx	1	b		1	0b
+dcx	1	d		1	1b
+dcx	1	h		1	2b
+dcx	1	sp		1	3b
+di	0			1	f3
+ei	0			1	fb
+hlt	0			1	76
+in	1	~		2	db S~1
+inr	1	\0		1	S((~1)<<3)+4
+inx	1	b		1	03
+inx	1	d		1	13
+inx	1	h		1	23
+inx	1	sp		1	33
+jc	1	~		3	da W~1
+jm	1	~		3	fa W~1
+jmp	1	~		3	c3 W~1
+jnc	1	~		3	d2 W~1
+jnz	1	~		3	c2 W~1
+jp	1	~		3	f2 W~1
+jpe	1	~		3	ea W~1
+jpo	1	~		3	e2 W~1
+jz	1	~		3	ca W~1
+lda	1	~		3	3a W~1
+ldax	1	b		1	0a
+ldax	1	d		1	1a
+lhld	1	~		3	2a W~1
+lxi	2	b	~	3	01 W~2
+lxi	2	d	~	3	11 W~2
+lxi	2	h	~	3	21 W~2
+lxi	2	sp	~	3	31 W~2
+mov	2	\0	\0	1	S((~1)<<3)+(~2)+40h
+mvi	2	\0	~	2	S((~1)<<3)+6h S~2
+nop	0			1	00
+ora	1	\0		1	S0b0h+(~1)
+ori	1	~		2	f6 S~1
+out	1	~		2	d3 S~1
+pchl	0			1	e9
+pop	1	b		1	c1
+pop	1	d		1	d1
+pop	1	h		1	e1
+pop	1	psw		1	f1
+push	1	b		1	c5
+push	1	d		1	d5
+push	1	h		1	e5
+push	1	psw		1	f5
+ral	0			1	17
+rar	0			1	1f
+rc	0			1	d8
+ret	0			1	c9
+rim	0			1	20
+rlc	0			1	07
+rm	0			1	f8
+rnc	0			1	d0
+rnz	0			1	c0
+rp	0			1	f0
+rpe	0			1	e8
+rpo	0			1	e0
+rrc	0			1	0f
+rst	1	~		1	S(((~1)&7)<<3)+0c7h
+rz	0			1	c8
+sbb	1	\0		1	S98h+(~1)
+sbi	1	~		2	de S~1
+shld	1	~		3	22 W~1
+sim	0			1	30
+sphl	0			1	f9
+sta	1	~		3	32 W~1
+stax	1	b		1	02
+stax	1	d		1	12
+stc	0			1	37
+sub	1	\0		1	S90h+(~1)
+sui	1	~		2	d6 S~1
+xchg	0			1	eb
+xra	1	\0		1	S0a8h+(~1)
+xri	1	~		2	ee S~1
+xthl	0			1	e3
+@END

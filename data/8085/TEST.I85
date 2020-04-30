@@ -1,0 +1,281 @@
+CSEG
+ORG 0H
+	NOP
+	
+	LXI	B,1234H
+	LXI	D,1234H
+	LXI	H,1234H
+	LXI	SP,1234H
+	
+	STAX	B
+	STAX	D
+	SHLD	2345H
+	STA	3456H
+	
+	INX	B
+	INX	D
+	INX	H
+	INX	SP
+	
+	INR	B
+	INR	D
+	INR	H
+	INR	M
+	INR	C
+	INR	E
+	INR	L
+	INR	A
+	
+	DCR	B
+	DCR	D
+	DCR	H
+	DCR	M
+	
+	MVI	B,23H
+	MVI	D,45H
+	MVI	H,78H
+	MVI	M,0ACH
+	
+	MVI	C,45H
+	MVI	E,65H
+	MVI	L,32H
+	MVI	A,01H
+	
+	RLC
+	RAL
+	DAA
+	STC
+	RRC
+	RAR
+	CMA
+	CMC
+	
+	DAD	B
+	DAD	D
+	DAD	H
+	DAD	SP
+	
+	LDAX	B
+	LDAX	D
+	LHLD	456H
+	LDA	67AH
+	
+	DCX	B
+	DCX	D
+	DCX	H
+	DCX	SP
+	
+	
+	
+	MOV	B,B
+	MOV	B,C
+	MOV	B,D
+	MOV	B,E
+	MOV	B,H
+	MOV	B,L
+	MOV	B,M
+	MOV	B,A
+
+	MOV	C,B
+	MOV	C,C
+	MOV	C,D
+	MOV	C,E
+	MOV	C,H
+	MOV	C,L
+	MOV	C,M
+	MOV	C,A
+
+	MOV	D,B
+	MOV	D,C
+	MOV	D,D
+	MOV	D,E
+	MOV	D,H
+	MOV	D,L
+	MOV	D,M
+	MOV	D,A
+
+	MOV	E,B
+	MOV	E,C
+	MOV	E,D
+	MOV	E,E
+	MOV	E,H
+	MOV	E,L
+	MOV	E,M
+	MOV	E,A
+
+	MOV	H,B
+	MOV	H,C
+	MOV	H,D
+	MOV	H,E
+	MOV	H,H
+	MOV	H,L
+	MOV	H,M
+	MOV	H,A
+
+	MOV	L,B
+	MOV	L,C
+	MOV	L,D
+	MOV	L,E
+	MOV	L,H
+	MOV	L,L
+	MOV	L,M
+	MOV	L,A
+
+	MOV	M,B
+	MOV	M,C
+	MOV	M,D
+	MOV	M,E
+	MOV	M,H
+	MOV	M,L
+	HLT
+	MOV	M,A
+	
+	MOV	A,B
+	MOV	A,C
+	MOV	A,D
+	MOV	A,E
+	MOV	A,H
+	MOV	A,L
+	MOV	A,M
+	MOV	A,A
+	
+	ADD	B
+	ADD	C
+	ADD	D
+	ADD	E
+	ADD	H
+	ADD	L
+	ADD	M
+	ADD	A
+	
+	ADC	B
+	ADC	C
+	ADC	D
+	ADC	E
+	ADC	H
+	ADC	L
+	ADC	M
+	ADC	A
+	
+	SUB	B
+	SUB	C
+	SUB	D
+	SUB	E
+	SUB	H
+	SUB	L
+	SUB	M
+	SUB	A
+	
+	SBB	B
+	SBB	C
+	SBB	D
+	SBB	E
+	SBB	H
+	SBB	L
+	SBB	M
+	SBB	A
+	
+	ANA	B
+	ANA	C
+	ANA	D
+	ANA	E
+	ANA	H
+	ANA	L
+	ANA	M
+	ANA	A
+	
+	XRA	B
+	XRA	C
+	XRA	D
+	XRA	E
+	XRA	H
+	XRA	L
+	XRA	M
+	XRA	A
+	
+	ORA	B
+	ORA	C
+	ORA	D
+	ORA	E
+	ORA	H
+	ORA	L
+	ORA	M
+	ORA	A
+	
+	CMP	B
+	CMP	C
+	CMP	D
+	CMP	E
+	CMP	H
+	CMP	L
+	CMP	M
+	CMP	A
+	
+	RNZ
+	RNC
+	RPO
+	RP
+	
+	POP	B
+	POP	D
+	POP	H
+	POP	PSW
+	
+	PUSH	B
+	PUSH	D
+	PUSH	H
+	PUSH	PSW
+	
+	JNZ	234H
+	JNC	345H
+	JPO	567H
+	JP	678H
+	JZ	789H
+	JC	89AH
+	JPE	9ABH
+	JM	123H
+	
+	CNZ	234H
+	CNC	345H
+	CPO	567H
+	CP	678H
+	CZ	789H
+	CC	89AH
+	CPE	9ABH
+	CM	123H
+	
+	CALL	234H
+	
+	ADI	75H
+	SUI	34H
+	ANI	12H
+	ORI	09H
+	ACI	34H
+	SBI	78H
+	XRI	12H
+	CPI	32H
+	
+	
+	RST	0
+	RST	1
+	RST	2
+	RST	3
+	RST	4
+	RST	5
+	RST	6
+	RST	7
+	
+	RZ
+	RC
+	RPE
+	RM
+	
+	RET
+	PCHL
+	SPHL
+
+END
+
+
+
+

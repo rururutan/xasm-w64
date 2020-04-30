@@ -1,0 +1,672 @@
+CSEG
+	ADC	A,(HL)
+	ADC	A,(IX+5)
+	ADC	A,(IY+5)
+	ADC	A,A
+	ADC	A,B
+	ADC	A,C
+	ADC	A,D
+	ADC	A,E
+	ADC	A,H
+	ADC	A,L
+	ADC	A,20H
+	
+	ADC	HL,BC
+	ADC	HL,DE
+	ADC	HL,HL
+	ADC	HL,SP
+
+	ADD	A,(HL)
+	ADD	A,(IX+5)
+	ADD	A,(IY+5)
+	ADD	A,A
+	ADD	A,B
+	ADD	A,C
+	ADD	A,D
+	ADD	A,E
+	ADD	A,H
+	ADD	A,L
+	ADD	A,20H
+	
+	ADD	HL,BC
+	ADD	HL,DE
+	ADD	HL,HL
+	ADD	HL,SP
+
+	ADD	IX,BC
+	ADD	IX,DE
+	ADD	IX,IX
+	ADD	IX,SP
+
+	ADD	IY,BC
+	ADD	IY,DE
+	ADD	IY,IY
+	ADD	IY,SP
+
+	AND	(HL)
+	AND	(IX+5)
+	AND	(IY+5)
+	AND	A
+	AND	B
+	AND	C
+	AND	D
+	AND	E
+	AND	H
+	AND	L
+	AND	20H
+	
+	BIT	0,(HL)
+	BIT	0,(IX+5)
+	BIT	0,(IY+5)
+	BIT	0,A
+	BIT	0,B
+	BIT	0,C
+	BIT	0,D
+	BIT	0,E
+	BIT	0,H
+	BIT	0,L
+
+	BIT	1,(HL)
+	BIT	1,(IX+5)
+	BIT	1,(IY+5)
+	BIT	1,A
+	BIT	1,B
+	BIT	1,C
+	BIT	1,D
+	BIT	1,E
+	BIT	1,H
+	BIT	1,L
+
+	BIT	7,(HL)
+	BIT	7,(IX+5)
+	BIT	7,(IY+5)
+	BIT	7,A
+	BIT	7,B
+	BIT	7,C
+	BIT	7,D
+	BIT	7,E
+	BIT	7,H
+	BIT	7,L
+
+	CALL	C,584H
+	CALL	M,584H
+	CALL	NC,584H
+	CALL	NZ,584H
+	CALL	P,584H
+	CALL	PE,584H
+	CALL	PO,584H
+	CALL	Z,584H
+
+	CCF
+	
+	CP	(HL)
+	CP	(IX+5)
+	CP	(IY+5)
+	CP	A
+	CP	B
+	CP	C
+	CP	D
+	CP	E
+	CP	H
+	CP	L
+	CP	20H
+	
+	CPD
+	
+	CPDR
+	
+	CPI
+	
+	CPIR
+	
+	CPL
+	
+	DAA
+	
+	DEC	(HL)
+	DEC	(IX+5)
+	DEC	(IY+5)
+	DEC	A
+	DEC	B
+	DEC	BC
+	DEC	C
+	DEC	D
+	DEC	DE
+	DEC	E
+	DEC	H
+	DEC	HL
+	DEC	IX
+	DEC	IY
+	DEC	L
+	DEC	SP
+	
+	DI
+	
+	DJNZ	$+30H
+	
+	EI
+	
+	EX	(SP),HL
+	EX	(SP),IX
+	EX	(SP),IY
+	
+	EX	AF, AF'
+	
+	EX	DE , HL
+	
+	EXX
+	
+	HALT
+	
+	IM	0
+	IM	1
+	IM	2
+	
+	IN	A,(C)
+	IN	B,(C)
+	IN	C,(C)
+	IN	D,(C)
+	IN	E,(C)
+	IN	H,(C)
+	IN	L,(C)
+
+	INC	(HL)
+	INC	(IX+5)
+	INC	(IY+5)
+	INC	A
+	INC	B
+	INC	BC
+	INC	C
+	INC	D
+	INC	DE
+	INC	E
+	INC	H
+	INC	HL
+	INC	IX
+	INC	IY
+	INC	L
+	INC	SP
+	
+	IN	A,(20H)
+	
+	IND
+	
+	INDR
+	
+	INI
+	
+	INIR
+	
+	JP	584H
+	
+	JP	(HL)
+	JP	(IX)
+	JP	(IY)
+	
+	JP	C,584H
+	JP	M,584H
+	JP	NC,584H
+	JP	NZ,584H
+	JP	P,584H
+	JP	PE,584H
+	JP	PO,584H
+	JP	Z,584H
+
+	JR	C,$+30H
+	JR	NC,$+30H
+	JR	NZ,$+30H
+	JR	Z,$+30H
+	
+	JR	$+30H
+	
+	LD	(BC),A
+	LD	(DE),A
+	LD	(HL),A
+	LD	(HL),B
+	LD	(HL),C
+	LD	(HL),D
+	LD	(HL),E
+	LD	(HL),H
+	LD	(HL),L
+	LD	(HL),20H
+	
+	LD	(IX+5),A
+	LD	(IX+5),B
+	LD	(IX+5),C
+	LD	(IX+5),D
+	LD	(IX+5),E
+	LD	(IX+5),H
+	LD	(IX+5),L
+	LD	(IX+5),20H
+
+	LD	(IY+7),A
+	LD	(IY+7),B
+	LD	(IY+7),C
+	LD	(IY+7),D
+	LD	(IY+7),E
+	LD	(IY+7),H
+	LD	(IY+7),L
+	LD	(IY+7),20H
+	
+	LD	(684H),A
+	LD	(684H),BC
+	LD	(684H),DE
+	LD	(684H),HL
+	LD	(684H),IX
+	LD	(684H),IY
+	LD	(684H),SP
+	
+	LD	A,(BC)
+	LD	A,(DE)
+	LD	A,(HL)
+	LD	A,(IX+9)
+	LD	A,(IY+2)
+	
+	LD	A,(784H)
+	
+	LD	A,A
+	LD	A,B
+	LD	A,C
+	LD	A,D
+	LD	A,E
+	LD	A,H
+	LD	A,I
+	LD	A,L
+	LD	A,20H
+	LD	A,R
+
+	LD	B,(HL)
+	LD	B,(IX+9)
+	LD	B,(IY+2)
+	
+	LD	B,A
+	LD	B,B
+	LD	B,C
+	LD	B,D
+	LD	B,E
+	LD	B,H
+	LD	B,L
+	LD	B,20H
+
+	LD	BC,(584H)
+	LD	BC,484H
+	
+	LD	C,(HL)
+	LD	C,(IX+9)
+	LD	C,(IY+2)
+	
+	LD	C,A
+	LD	C,B
+	LD	C,C
+	LD	C,D
+	LD	C,E
+	LD	C,H
+	LD	C,L
+	LD	C,20H
+
+	LD	D,(HL)
+	LD	D,(IX+9)
+	LD	D,(IY+2)
+	
+	LD	D,A
+	LD	D,B
+	LD	D,C
+	LD	D,D
+	LD	D,E
+	LD	D,H
+	LD	D,L
+	LD	D,20H
+
+	LD	DE,(584H)
+	LD	DE,484H
+	
+	LD	E,(HL)
+	LD	E,(IX+9)
+	LD	E,(IY+2)
+	
+	LD	E,A
+	LD	E,B
+	LD	E,C
+	LD	E,D
+	LD	E,E
+	LD	E,H
+	LD	E,L
+	LD	E,20H
+
+	LD	H,(HL)
+	LD	H,(IX+9)
+	LD	H,(IY+2)
+	
+	LD	H,A
+	LD	H,B
+	LD	H,C
+	LD	H,D
+	LD	H,E
+	LD	H,H
+	LD	H,L
+	LD	H,20H
+
+	LD	HL,(584H)
+	LD	HL,484H
+	
+	LD	I,A
+	
+	LD	IX,(384H)
+	LD	IX,1284H
+	LD	IY,(384H)
+	LD	IX,1284H
+	
+	LD	L,(HL)
+	LD	L,(IX+9)
+	LD	L,(IY+2)
+	
+	LD	L,A
+	LD	L,B
+	LD	L,C
+	LD	L,D
+	LD	L,E
+	LD	L,H
+	LD	L,L
+	LD	L,20H
+
+	LD	R,A
+	LD	SP,(584H)
+	LD	SP,HL
+	LD	SP,IX
+	LD	SP,IY
+	LD	SP,684H
+	
+	LDD
+	
+	LDDR
+	
+	LDI
+	
+	LDIR
+	
+	NEG
+	
+	NOP
+	
+	OR	(HL)
+	OR	(IX+9)
+	OR	(IY+2)
+	
+	OR	A
+	OR	B
+	OR	C
+	OR	D
+	OR	E
+	OR	H
+	OR	L
+	OR	20H
+	
+	OTDR
+	
+	OTIR
+	
+	OUT	(C),A
+	OUT	(C),B
+	OUT	(C),C
+	OUT	(C),D
+	OUT	(C),E
+	OUT	(C),H
+	OUT	(C),L
+
+	OUT	(20H),A
+	
+	OUTD
+	
+	OUTI
+	
+	POP	AF
+	POP	BC
+	POP	DE
+	POP	HL
+	POP	IX
+	POP	IY
+
+	PUSH	AF
+	PUSH	BC
+	PUSH	DE
+	PUSH	HL
+	PUSH	IX
+	PUSH	IY
+
+	RES	0,(HL)
+	RES	0,(IX+5)
+	RES	0,(IY+5)
+	RES	0,A
+	RES	0,B
+	RES	0,C
+	RES	0,D
+	RES	0,E
+	RES	0,H
+	RES	0,L
+
+	RES	1,(HL)
+	RES	1,(IX+5)
+	RES	1,(IY+5)
+	RES	1,A
+	RES	1,B
+	RES	1,C
+	RES	1,D
+	RES	1,E
+	RES	1,H
+	RES	1,L
+
+	RES	7,(HL)
+	RES	7,(IX+5)
+	RES	7,(IY+5)
+	RES	7,A
+	RES	7,B
+	RES	7,C
+	RES	7,D
+	RES	7,E
+	RES	7,H
+	RES	7,L
+
+	RET
+	
+	RET	C
+	RET	M
+	RET	NC
+	RET	NZ
+	RET	P
+	RET	PE
+	RET	PO
+	RET	Z
+
+	RETI
+	
+	RETN
+	
+	RL	(HL)
+	RL	(IX+9)
+	RL	(IY+2)
+	
+	RL	A
+	RL	B
+	RL	C
+	RL	D
+	RL	E
+	RL	H
+	RL	L
+	
+	RLA
+	
+	RLC	(HL)
+	RLC	(IX+9)
+	RLC	(IY+2)
+	
+	RLC	A
+	RLC	B
+	RLC	C
+	RLC	D
+	RLC	E
+	RLC	H
+	RLC	L
+	
+	RLCA
+	
+	RLD
+	
+	RR	(HL)
+	RR	(IX+9)
+	RR	(IY+2)
+	
+	RR	A
+	RR	B
+	RR	C
+	RR	D
+	RR	E
+	RR	H
+	RR	L
+	
+	RRA
+	
+	RRC	(HL)
+	RRC	(IX+9)
+	RRC	(IY+2)
+	
+	RRC	A
+	RRC	B
+	RRC	C
+	RRC	D
+	RRC	E
+	RRC	H
+	RRC	L
+	
+	RRCA
+	
+	RRD
+	
+	RST	00H
+	RST	08H
+	RST	10H
+	RST	18H
+	RST	20H
+	RST	28H
+	RST	30H
+	RST	38H
+	
+	SBC	A,20H
+	SBC	A,(HL)
+	SBC	A,(IX+5)
+	SBC	A,(IY+5)
+	SBC	A,A
+	SBC	A,B
+	SBC	A,C
+	SBC	A,D
+	SBC	A,E
+	SBC	A,H
+	SBC	A,L
+	
+	SBC	HL,BC
+	SBC	HL,DE
+	SBC	HL,HL
+	SBC	HL,SP
+	
+	SCF
+	
+	SET	0,(HL)
+	SET	0,(IX+5)
+	SET	0,(IY+5)
+	SET	0,A
+	SET	0,B
+	SET	0,C
+	SET	0,D
+	SET	0,E
+	SET	0,H
+	SET	0,L
+
+	SET	1,(HL)
+	SET	1,(IX+5)
+	SET	1,(IY+5)
+	SET	1,A
+	SET	1,B
+	SET	1,C
+	SET	1,D
+	SET	1,E
+	SET	1,H
+	SET	1,L
+
+	SET	7,(HL)
+	SET	7,(IX+5)
+	SET	7,(IY+5)
+	SET	7,A
+	SET	7,B
+	SET	7,C
+	SET	7,D
+	SET	7,E
+	SET	7,H
+	SET	7,L
+
+	SLA	(HL)
+	SLA	(IX+9)
+	SLA	(IY+2)
+	
+	SLA	A
+	SLA	B
+	SLA	C
+	SLA	D
+	SLA	E
+	SLA	H
+	SLA	L
+	
+	SRA	(HL)
+	SRA	(IX+9)
+	SRA	(IY+2)
+	
+	SRA	A
+	SRA	B
+	SRA	C
+	SRA	D
+	SRA	E
+	SRA	H
+	SRA	L
+	
+	SRL	(HL)
+	SRL	(IX+9)
+	SRL	(IY+2)
+	
+	SRL	A
+	SRL	B
+	SRL	C
+	SRL	D
+	SRL	E
+	SRL	H
+	SRL	L
+	
+	SUB	(HL)
+	SUB	(IX+9)
+	SUB	(IY+2)
+	
+	SUB	A
+	SUB	B
+	SUB	C
+	SUB	D
+	SUB	E
+	SUB	H
+	SUB	L
+	
+	SUB	40H
+	
+	XOR	(HL)
+	XOR	(IX+9)
+	XOR	(IY+2)
+	
+	XOR	A
+	XOR	B
+	XOR	C
+	XOR	D
+	XOR	E
+	XOR	H
+	XOR	L
+	
+	XOR	40H
+	
+END
+
+
+

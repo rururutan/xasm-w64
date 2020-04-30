@@ -1,0 +1,125 @@
+@\0
+r0,	0
+r1,	1
+r2,	2
+r3,	3
+r4,	4
+r5,	5
+r6,	6
+r7,	7
+@\1
+r0,	0
+r1,	1
+@\2
+p1,	1
+p2,	2
+@\3
+p4,	0
+p5,	1
+p6,	2
+p7,	3
+@TABLE
+add	2	a	\0	1	S68h+((~2)&7)
+add	2	a	@\1	1	S60h+((~2)&1)
+add	2	a	#~	2	03 S(~2)&0ffh
+addc	2	a	\0	1	S78h+((~2)&7)
+addc	2	a	@\1	1	S70h+((~2)&1)
+addc	2	a	#~	2	13 S(~2)&0ffh
+anl	2	a	\0	1	S58h+((~2)&7)
+anl	2	a	@\1	1	S50h+((~2)&1)
+anl	2	a	#~	2	53 S(~2)&0ffh
+anl	2	bus	#~	2	98 S(~2)&0ffh
+anl	2	\2	#~	2	S98h+((~1)&3) S~2
+anld	2	\3	a	1	S9ch+((~1)&3)
+call	1	~		2	S14h+(((~1)>>3)&0e0h) S(~1)&0ffh
+clr	1	a		1	27
+clr	1	c		1	97
+clr	1	f1		1	a5
+clr	1	f0		1	85
+cpl	1	a		1	37
+cpl	1	c		1	a7
+cpl	1	f0		1	95
+cpl	1	f1		1	b5
+da	1	a		1	57
+dec	1	a		1	07
+dec	1	\0		1	S0c8h+((~1)&7)
+dis	1	i		1	15
+dis	1	tcnti		1	35
+djnz	2	\0	~	2	S0e8h+((~1)&7) S~2
+en	1	i		1	05
+en	1	tcnti		1	25
+ent0	1	clk		1	75
+in	2	a	\2	1	S08h+((~2)&3)
+inc	1	a		1	17
+inc	1	\0		1	S18h+((~1)&7)
+inc	1	@\1		1	S10h+((~1)&1)
+ins	2	a	bus	1	08
+jb0	1	~		2	12 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb1	1	~		2	32 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb2	1	~		2	52 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb3	1	~		2	72 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb4	1	~		2	92 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb5	1	~		2	b2 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb6	1	~		2	d2 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jb7	1	~		2	f2 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jc	1	~		2	f6 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jf0	1	~		2	b6 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jf1	1	~		2	76 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jmp	1	~		2	S04h+(((~1)>>3)&0e0h) S(~1)&0ffh
+jmpp	1	@a		1	b3
+jnc	1	~		2	e6 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jni	1	~		2	86 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jnt0	1	~		2	26 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jnt1	1	~		2	46 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jnz	1	~		2	96 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jt0	1	~		2	36 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jt1	1	~		2	56 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jtf	1	~		2	16 S~1 T($&0ff00h)<>((~1)&0ff00h)
+jz	1	~		2	c6 S~1 T($&0ff00h)<>((~1)&0ff00h)
+mov	2	a	#~	2	23 S~2
+mov	2	a	psw	1	c7
+mov	2	a	\0	1	S0f8h+((~2)&7)
+mov	2	a	@\1	1	S0f0h+((~2)&1)
+mov	2	a	t	1	42
+mov	2	psw	a	1	d7
+mov	2	\0	a	1	S0a8h+((~1)&7)
+mov	2	\0	#~	2	S0b8h+((~1)&7) S~2
+mov	2	@\1	a	1	S0a0h+((~1)&1)
+mov	2	@\1	#~	2	S0b0h+((~1)&1) S~2
+mov	2	t	a	1	62
+movd	2	a	\3	1	S0ch+((~2)&3)
+movd	2	\3	a	1	S3ch+((~1)&3)
+movp	2	a	@a	1	a3
+movp3	2	a	@a	1	e3
+movx	2	a	@\1	1	S80h+((~2)&1)
+movx	2	@\1	a	1	S90h+((~1)&1)
+nop	0			1	00
+orl	2	a	\0	1	S48h+((~2)&7)
+orl	2	a	@\1	1	S40h+((~2)&1)
+orl	2	a	#~	2	43 S~2
+orl	2	bus	#~	2	88 S~2
+orl	2	\2	#~	2	S88h+((~1)&3) S~2
+orld	2	\3	a	1	S8ch+((~1)&3)
+outl	2	bus	a	1	02
+outl	2	\2	a	1	S38h+((~1)&3)
+ret	0			1	83
+retr	0			1	93
+rl	1	a		1	e7
+rlc	1	a		1	f7
+rr	1	a		1	77
+rrc	1	a		1	67
+sel	1	mb0		1	e5
+sel	1	mb1		1	f5
+sel	1	rb0		1	c5
+sel	1	rb1		1	d5
+stop	1	tcnt		1	65
+strt	1	cnt		1	45
+strt	1	t		1	55
+swap	1	a		1	47
+xch	2	a	\0	1	S28h+((~2)&7)
+xch	2	a	@\1	1	S20h+((~2)&1)
+xchd	2	a	@\1	1	S30h+((~2)&1)
+xrl	2	a	\0	1	S0d8h+((~2)&7)
+xrl	2	a	@\1	1	S0d0h+((~2)&1)
+xrl	2	a	#~	2	d3 S~2
+@END

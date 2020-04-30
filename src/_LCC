@@ -1,0 +1,9 @@
+# LSI C-86 compiler's configuration file
+#-h
+-DLSI_C
+-DDEBUGN
+-XC:\LSIC86\BIN -LC:\LSIC86\LIB\S -IC:\LSIC86\INCLUDE -T -O -v1
+-acdos.obj $LSICOPTS
+&		#Command line argument will be inserted here
+-ldoslib -lknjlib
+
