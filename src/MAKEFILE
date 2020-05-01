@@ -1,45 +1,57 @@
 #	makefile for X ASSEMBLER
-xasm175.exe :  obj\asm.obj     obj\message.obj \
-		     obj\pass1.obj   obj\words.obj   \
-		     obj\label.obj   obj\valstr.obj  \
-		     obj\lasm.obj    obj\pass2.obj   \
-		     obj\eval.obj    obj\temp.obj    \
-		     obj\src.obj
-	lcc -o xasm175.exe @l85
 
-obj\asm.obj :	     asm.c asm.h pass1.h label.h lasm.h valstr.h
-	lcc -c  -o obj\asm.obj asm.c
-	
-obj\message.obj:     message.c
-	lcc -c  -o obj\message.obj message.c
+PROGRAM	= xasm.exe
 
-obj\pass1.obj :	pass1.c asm.h words.h lasm.h label.h valstr.h eval.h temp.h \
+CC		= gcc
+OPTFLAG	= -O
+OUTFLAG	= -o
+EXEFLAG	= -o
+
+OBJDIR := obj
+OBJS := $(addprefix $(OBJDIR)/,asm.o message.o pass1.o words.o label.o \
+		valstr.o lasm.o pass2.o eval.o temp.o src.o )
+
+all: $(PROGRAM)
+$(OBJS): | $(OBJDIR)
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(PROGRAM) : $(OBJS)
+	$(CC) $(OPTFLAG) $(EXEFLAG)$(PROGRAM) obj/asm.o obj/message.o obj/pass1.o obj/words.o obj/label.o obj/valstr.o obj/lasm.o obj/pass2.o obj/eval.o obj/temp.o obj/src.o
+
+obj/asm.o :	     asm.c asm.h pass1.h label.h lasm.h valstr.h
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/asm.o asm.c
+
+obj/message.o:     message.c
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/message.o message.c
+
+obj/pass1.o :	pass1.c asm.h words.h lasm.h label.h valstr.h eval.h temp.h \
                 src.h
-	lcc -c  -o obj\pass1.obj pass1.c
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/pass1.o pass1.c
 
-obj\pass2.obj :	pass2.c asm.h words.h lasm.h label.h valstr.h eval.h temp.h
-	lcc -c  -o obj\pass2.obj pass2.c
+obj/pass2.o :	pass2.c asm.h words.h lasm.h label.h valstr.h eval.h temp.h
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/pass2.o pass2.c
 
-obj\words.obj :	words.c	asm.h 
-	lcc -c  -o obj\words.obj words.c
+obj/words.o :	words.c	asm.h 
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/words.o words.c
 
-obj\label.obj :	label.c	asm.h words.h valstr.h
-	lcc -c  -o obj\label.obj label.c
+obj/label.o :	label.c	asm.h words.h valstr.h
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/label.o label.c
 
-obj\valstr.obj : valstr.c asm.h words.h 
-	lcc -c  -o obj\valstr.obj valstr.c
+obj/valstr.o : valstr.c asm.h words.h 
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/valstr.o valstr.c
 
-obj\lasm.obj : lasm.c asm.h valstr.h words.h label.h
-	lcc -c  -o obj\lasm.obj lasm.c
+obj/lasm.o : lasm.c asm.h valstr.h words.h label.h
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/lasm.o lasm.c
 
-obj\eval.obj : eval.c valstr.h
-	lcc -c  -o obj\eval.obj eval.c
+obj/eval.o : eval.c valstr.h
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/eval.o eval.c
 
-obj\temp.obj : temp.c asm.h label.h words.h
-	lcc -c  -o obj\temp.obj temp.c
+obj/temp.o : temp.c asm.h label.h words.h
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/temp.o temp.c
 
-obj\src.obj : src.c 
-	lcc -c  -o obj\src.obj src.c
+obj/src.o : src.c 
+	$(CC) $(OPTFLAG) -c $(OUTFLAG)obj/src.o src.c
 
-
-
+clean:
+	rm obj/*.o $(PROGRAM)
