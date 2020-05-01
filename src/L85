@@ -1,3 +1,0 @@
-obj\asm.obj obj\message.obj obj\pass1.obj obj\words.obj 
-obj\label.obj obj\valstr.obj obj\lasm.obj obj\pass2.obj
-obj\eval.obj obj\temp.obj obj\src.obj
