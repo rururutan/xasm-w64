@@ -1,4 +1,4 @@
-# XASM-W64
+# XASM-Win64
 
 ## これは?
 
@@ -23,7 +23,7 @@
 # リンク
 
 * [オリジナルのダウンロードサイト(Vector)](https://www.vector.co.jp/soft/dos/prog/se008546.html)
-* [オリジナルソースのダウンロードサイト(水魚堂)](https://www.suigyodo.com/online/oldedit.htm)
+* [オリジナルソースのダウンロードサイト(水魚堂)](https://www.suigyodo.com/online/warehouse/warehouse.htm)
 
 
 ## ライセンス
